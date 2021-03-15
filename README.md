@@ -1,25 +1,30 @@
 # Stepik
 
-Задача на программирование: последняя цифра большого числа Фибоначчи
+Задача на программирование повышенной сложности: огромное число Фибоначчи по модулю
 
-
-Дано число 1 ≤ n ≤ 10^7, необходимо найти последнюю цифру n-го числа Фибоначчи.
+Даны целые числа 1 ≤ n ≤ 10^18 и 2 ≤ m ≤ 10^5, необходимо найти остаток от деления n-го числа Фибоначчи на m.
 
 Программа:
 
 #include <iostream>
-#include <stdio.h>
+#include <vector>
 
 using namespace std;
 
 int main() {
-    int a = 0, b = 1, c, n;
+    long long n = 0;
+    long long m = 0;
     cin >> n;
-    for (int i = 2; i <= n; i++) {
-            c = (a + b) % 10;
-            a = b;
-            b = c;
-        }
-    cout << b;
+    cin >> m;
+    vector <long long> F(2);
+    F[0] = 0;
+    F[1] = 1;
+    long long t = 0;
+    for (long long j = 2; j < m ^ 2 + 1; ++j) {
+        F.push_back ((F[j - 1] + F[j - 2]) % m);
+        ++t;
+        if ((F[j] == 1) && (F[j - 1] == 0)) break;
+    }
+    cout << F[n % t] << endl;
     return 0;
 }
