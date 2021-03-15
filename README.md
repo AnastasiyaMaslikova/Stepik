@@ -1,28 +1,25 @@
 # Stepik
 
-Задача на программирование: небольшое число Фибоначчи
+Задача на программирование: последняя цифра большого числа Фибоначчи
 
-Дано целое число 1 ≤ n ≤ 40, необходимо вычислить nn-е число Фибоначчи (напомним, что F0 = 0, F1 = 1 и Fn = F(n−1) + F(n−2) при n ≥ 2).
+
+Дано число 1 ≤ n ≤ 10^7, необходимо найти последнюю цифру n-го числа Фибоначчи.
 
 Программа:
 
-#include <cassert>
 #include <iostream>
+#include <stdio.h>
 
-class Fibonacci {
-public:
-static int get(int n) {
-assert(n >= 0);
-if (n == 0 || n == 1) {
-return n;
-}
-return get(n - 2) + get(n - 1); 
-}
-};
+using namespace std;
 
-int main(void) {
-int n;
-std::cin >> n;
-std::cout << Fibonacci::get(n) << std::endl;
-return 0;
+int main() {
+    int a = 0, b = 1, c, n;
+    cin >> n;
+    for (int i = 2; i <= n; i++) {
+            c = (a + b) % 10;
+            a = b;
+            b = c;
+        }
+    cout << b;
+    return 0;
 }
